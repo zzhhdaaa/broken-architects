@@ -3075,6 +3075,8 @@ MonoBehaviour:
   - {fileID: 1021689198}
   wanShirLe: 000000000000000000000000
   roof: {fileID: 934795787}
+  explosion: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+  offset: 5
 --- !u!4 &1612192029
 Transform:
   m_ObjectHideFlags: 0
