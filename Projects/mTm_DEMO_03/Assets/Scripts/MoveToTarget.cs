@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MoveToTarget : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MoveToTarget : MonoBehaviour
     public GameObject target;
     public bool tingLe = false;
     public bool daoLe = false;
+    public bool wanShirLe = false;
     public float tingXia = 10.0f;
 
     // Start is called before the first frame update
@@ -43,13 +45,21 @@ public class MoveToTarget : MonoBehaviour
                     target.GetComponent<MeshRenderer>().enabled = false;
                     gameObject.transform.position = target.transform.position;
                     gameObject.transform.rotation = target.transform.rotation;
-                    //daoLe = true;
+                    daoLe = true;
                 }
             }
         }
         else
         {
-            gameObject.AddComponent<Rigidbody>();
+            if (daoLe && !wanShirLe)
+            {
+                //gameObject.AddComponent<Rigidbody>();
+                wanShirLe = true;
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
