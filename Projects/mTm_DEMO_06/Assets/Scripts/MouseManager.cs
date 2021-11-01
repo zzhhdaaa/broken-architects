@@ -6,8 +6,11 @@ using System;
 public class MouseManager : MonoBehaviour
 {
     public static MouseManager Instance;
+
     public event Action<GameObject> OnBrickClicked;
+
     public event Action<GameObject> OnRoofClicked;
+
     public Texture2D cursor01;
     public Texture2D cursor02;
     public Texture2D cursor03;
@@ -17,10 +20,10 @@ public class MouseManager : MonoBehaviour
     private float jiShi = 0.0f;
     private bool kaiGuan = false;
 
-    RaycastHit hitInfo;
+    private RaycastHit hitInfo;
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -32,17 +35,16 @@ public class MouseManager : MonoBehaviour
         }
 
         //Debug.Log(AddAge(5, 21));
-
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         MouseControl();
         SetCursor();
     }
 
-    void MouseControl()
+    private void MouseControl()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hitInfo))
@@ -57,8 +59,9 @@ public class MouseManager : MonoBehaviour
                         Debug.Log("Hit Bricks");
                     }
                     break;
+
                 case "Roofs":
-                    if (Input.GetMouseButtonDown(1) && hitInfo.collider != null)
+                    if (Input.GetMouseButtonDown(0) && hitInfo.collider != null)
                     {
                         OnRoofClicked?.Invoke(hitInfo.collider.gameObject);
                         Debug.Log("Hit Roofs");
@@ -80,7 +83,7 @@ public class MouseManager : MonoBehaviour
         Debug.Log(c);
     }*/
 
-    void SetCursor()
+    private void SetCursor()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
