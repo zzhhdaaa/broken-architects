@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraManager : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class CameraManager : MonoBehaviour
     Quaternion targetRot;
     public float rotateSpeed = 30.0f;
     public float stopDistance = 3.0f;
-    int centerNumber = 0;
+
+    public GameObject zhongSGW;
+
+    [HideInInspector]
+    public int centerNumber = 0;
 
     bool movingCamera = false;
 
@@ -75,7 +80,7 @@ public class CameraManager : MonoBehaviour
                 Camera.main.orthographic = false;
                 Camera.main.fieldOfView = 30;
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            else if (Input.GetKeyDown(KeyCode.Alpha4) || zhongSGW.GetComponent<ZhongShenGuiWei>().cameraKuaiPao)
             {
                 Debug.Log("AnLe4");
                 movingCamera = true;
@@ -93,6 +98,11 @@ public class CameraManager : MonoBehaviour
                 targetPos = startingPos;
                 targetRot = startingRot;
                 Camera.main.orthographic = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
             }
         }
     }

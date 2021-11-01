@@ -10,6 +10,10 @@ public class ZhongShenGuiWei : MonoBehaviour
     public GameObject roof;
     public GameObject explosion;
     public float offset = 2.0f;
+    private float countTime = 0.0f;
+
+    [HideInInspector]
+    public bool cameraKuaiPao = false;
     //public GameObject[] targets;
     //public Dictionary<GameObject, GameObject> GuiWei = new Dictionary<GameObject, GameObject>();
 
@@ -39,16 +43,25 @@ public class ZhongShenGuiWei : MonoBehaviour
             }
             if (wanShirShuLiang >= cubes.Length)
             {
-                for (int i = 0; i < cubes.Length; i++)
+                if (countTime <= 1.8f)
                 {
-                    cubes[i].AddComponent<Rigidbody>();
-                    cubes[i].GetComponent<Rigidbody>().drag = 5;
+                    countTime += Time.deltaTime;
+                    cameraKuaiPao = true;
                 }
-                Vector3 explosionPos = new Vector3(roof.transform.position.x, roof.transform.position.y - offset, roof.transform.position.z);
-                GameObject obj = Instantiate(explosion, explosionPos, roof.transform.rotation);
-                roof.SetActive(true);
-                Debug.Log("GaiTMD!!");
-                quanWanShir = true;
+                else
+                {
+                    cameraKuaiPao = false;
+                    for (int i = 0; i < cubes.Length; i++)
+                    {
+                        cubes[i].AddComponent<Rigidbody>();
+                        cubes[i].GetComponent<Rigidbody>().drag = 5;
+                    }
+                    Vector3 explosionPos = new Vector3(roof.transform.position.x, roof.transform.position.y - offset, roof.transform.position.z);
+                    GameObject obj = Instantiate(explosion, explosionPos, roof.transform.rotation);
+                    roof.SetActive(true);
+                    Debug.Log("GaiTMD!!");
+                    quanWanShir = true;
+                }
             }
         }
         else
