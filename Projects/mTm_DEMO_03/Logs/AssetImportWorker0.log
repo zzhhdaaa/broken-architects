@@ -211,3 +211,4 @@ Received Import Request.
 Start importing Assets/SimpleFX/Materials/UnlitVertexColour_Alpha.shader using Guid(125f31ba4cdefb2469a075f509877b02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e72e81cd8d7bd4cd1ea507d1dff37f1') in 0.008632 seconds 
   Import took 0.011374 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
